@@ -15,6 +15,7 @@ namespace NoivaeCiaV2
             this.Hoje = DateTime.Today;
         }
 
+     
         public static DateTime AdicionarDia(DateTime data)
         {
             return data.AddDays(1);

@@ -8,14 +8,14 @@ namespace NoivaeCiaV2
 {
     internal class Agendamento
     {
-        private DateTime data;
-        private Espaco espaco;
+        public DateTime Data;
+        private Espaco Espaco;
 
 
         public Agendamento(DateTime data, Espaco espaco)
         {
-            this.data = data;
-            this.espaco = espaco;
+            this.Data = data;
+            this.Espaco = espaco;
         }
     }
 }

@@ -8,9 +8,9 @@ namespace NoivaeCiaV2
 {
     internal class Espaco
     {
-        private char Id;
-        private int Capacidade;
-        private List<Agendamento>? Agendamentos { get; set; }
+        private char Id { get; set; }
+        public int Capacidade { get; set; }
+        public List<Agendamento>? Agendamentos { get; set; }
 
 
         public Espaco(char Id, int Capacidade) { 

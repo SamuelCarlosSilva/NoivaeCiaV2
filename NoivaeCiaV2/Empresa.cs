@@ -28,11 +28,63 @@ namespace NoivaeCiaV2
             Espacos[4] = EspacoE;
             Espacos[5] = EspacoF;
             Espacos[6] = EspacoG;
-            Espacos[7] = EspacoH;
-
-
-            
+            Espacos[7] = EspacoH;  
         }
 
+        public void RealizarAgendamento(int qtdPessoas)
+        {
+
+        }
+
+        public int TamanhoEspaco(int qtdPessoas)
+        {
+            int numeroProximoMaior = int.MaxValue;
+            int diferencaMinima = int.MaxValue; 
+
+            foreach (Espaco espaco in Espacos)
+            {
+                if (espaco.Capacidade >= qtdPessoas && espaco.Capacidade - qtdPessoas < diferencaMinima)
+                {
+                    diferencaMinima = espaco.Capacidade - qtdPessoas;
+                    numeroProximoMaior = espaco.Capacidade;
+                }
+            }
+            return numeroProximoMaior;
+        }
+
+        public Espaco EncontrarEspacoPorTamanho(int tamanhoEspaco)
+        {
+            for (int i = 0; i < Espacos.Length; i++)
+            {
+                if (Espacos[i].Capacidade == tamanhoEspaco)
+                {
+                    return Espacos[i];
+                }
+            }
+            return Espacos[0];
+        }
+
+       /* public DateTime EncontrarData(Espaco Espaco)
+        {
+           Data data = new Data();
+           data.Hoje = Data.AdicionarMes(data.Hoje);
+
+            Agendamento ultimoAgendamento = Espaco.Agendamentos[Espaco.Agendamentos.Count - 1];
+
+            if(ultimoAgendamento == null)
+            {
+                if (Data.ehSexta(data.Hoje)) { 
+                    return data.Hoje;
+                }
+                else if (Data.ehSabado(data.Hoje)) {
+                    return data.Hoje;
+                }
+                
+               
+            }
+
+            ultimoAgendamento.Data == data.Hoje
+            
+        }*/
     }
 }
