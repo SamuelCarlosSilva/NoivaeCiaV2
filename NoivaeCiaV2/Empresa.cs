@@ -8,7 +8,7 @@ namespace NoivaeCiaV2
 {
     internal class Empresa
     {
-        private Espaco[] Espacos;
+        private Espaco[] Espacos = new Espaco[8];
 
         public Empresa()
         {
@@ -31,12 +31,17 @@ namespace NoivaeCiaV2
             Espacos[7] = EspacoH;  
         }
 
-        public void RealizarAgendamento(int qtdPessoas)
+       public void RealizarAgendamento(int qtdPessoas)
         {
+            Espaco EspacoAgendado = EncontrarEspacoPorTamanho(TamanhoEspaco(qtdPessoas));
+            DateTime DataEncontrada = EncontrarData(EspacoAgendado);
 
+            Agendamento AgendamentoAtual = new Agendamento(DataEncontrada, EspacoAgendado);
+
+            EspacoAgendado.Agendamentos.Add(AgendamentoAtual);
         }
 
-        public int TamanhoEspaco(int qtdPessoas)
+       public int TamanhoEspaco(int qtdPessoas)
         {
             int numeroProximoMaior = int.MaxValue;
             int diferencaMinima = int.MaxValue; 
@@ -52,7 +57,7 @@ namespace NoivaeCiaV2
             return numeroProximoMaior;
         }
 
-        public Espaco EncontrarEspacoPorTamanho(int tamanhoEspaco)
+       public Espaco EncontrarEspacoPorTamanho(int tamanhoEspaco)
         {
             for (int i = 0; i < Espacos.Length; i++)
             {
@@ -64,10 +69,11 @@ namespace NoivaeCiaV2
             return Espacos[0];
         }
 
-       /* public DateTime EncontrarData(Espaco Espaco)
+       public DateTime EncontrarData(Espaco Espaco)
         {
            Data data = new Data();
-           data.Hoje = Data.AdicionarMes(data.Hoje);
+            bool DataInvalida = true;
+            data.Hoje = Data.AdicionarMes(data.Hoje);
 
             Agendamento ultimoAgendamento = Espaco.Agendamentos[Espaco.Agendamentos.Count - 1];
 
@@ -79,12 +85,43 @@ namespace NoivaeCiaV2
                 else if (Data.ehSabado(data.Hoje)) {
                     return data.Hoje;
                 }
-                
-               
+                else
+                {
+                    return data.Hoje;
+                }
             }
 
-            ultimoAgendamento.Data == data.Hoje
-            
-        }*/
+          
+            while (DataInvalida)
+            {
+                if (ultimoAgendamento.Data == data.Hoje)
+                {
+                    data.Hoje = Data.AdicionarDia(data.Hoje);
+                }
+                else
+                {
+                    DataInvalida = false;
+                }
+            }
+
+            DataInvalida = true;
+
+            while (DataInvalida)
+            {
+                if (!Data.ehSexta(data.Hoje) && !Data.ehSabado(data.Hoje))
+                {
+                    data.Hoje = Data.AdicionarDia(data.Hoje);
+                }
+                else
+                {
+                    DataInvalida = false;
+                }
+            }
+            return data.Hoje;
+        }
     }
+
+
+
+
 }
