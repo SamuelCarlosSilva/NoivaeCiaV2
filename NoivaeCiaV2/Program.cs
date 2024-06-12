@@ -4,5 +4,4 @@ using NoivaeCiaV2;
 Console.WriteLine("Hello, World!");
  Empresa empresa = new Empresa();
 
-
 empresa.RealizarAgendamento(300);

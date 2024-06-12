@@ -16,6 +16,7 @@ namespace NoivaeCiaV2
         public Espaco(char Id, int Capacidade) { 
             this.Id = Id;
             this.Capacidade = Capacidade;
+            this.Agendamentos = new List<Agendamento>();
         }
     }
 }

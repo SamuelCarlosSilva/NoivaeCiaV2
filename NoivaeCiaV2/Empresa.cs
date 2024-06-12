@@ -42,6 +42,7 @@ namespace NoivaeCiaV2
         }
 
        public int TamanhoEspaco(int qtdPessoas)
+
         {
             int numeroProximoMaior = int.MaxValue;
             int diferencaMinima = int.MaxValue; 
@@ -75,37 +76,41 @@ namespace NoivaeCiaV2
             bool DataInvalida = true;
             data.Hoje = Data.AdicionarMes(data.Hoje);
 
-            Agendamento ultimoAgendamento = Espaco.Agendamentos[Espaco.Agendamentos.Count - 1];
-
-            if(ultimoAgendamento == null)
+            if(Espaco.Agendamentos.Count > 0)
             {
-                if (Data.ehSexta(data.Hoje)) { 
-                    return data.Hoje;
-                }
-                else if (Data.ehSabado(data.Hoje)) {
-                    return data.Hoje;
-                }
-                else
+                Agendamento ultimoAgendamento = Espaco.Agendamentos[Espaco.Agendamentos.Count - 1];
+                if (ultimoAgendamento == null)
                 {
-                    return data.Hoje;
+                    if (Data.ehSexta(data.Hoje))
+                    {
+                        return data.Hoje;
+                    }
+                    else if (Data.ehSabado(data.Hoje))
+                    {
+                        return data.Hoje;
+                    }
+                    else
+                    {
+                        return data.Hoje;
+                    }
                 }
+
+
+                while (DataInvalida)
+                {
+                    if (ultimoAgendamento.Data == data.Hoje)
+                    {
+                        data.Hoje = Data.AdicionarDia(data.Hoje);
+                    }
+                    else
+                    {
+                        DataInvalida = false;
+                    }
+                }
+
+                DataInvalida = true;
             }
-
-          
-            while (DataInvalida)
-            {
-                if (ultimoAgendamento.Data == data.Hoje)
-                {
-                    data.Hoje = Data.AdicionarDia(data.Hoje);
-                }
-                else
-                {
-                    DataInvalida = false;
-                }
-            }
-
-            DataInvalida = true;
-
+         
             while (DataInvalida)
             {
                 if (!Data.ehSexta(data.Hoje) && !Data.ehSabado(data.Hoje))
