@@ -17,5 +17,9 @@ namespace NoivaeCiaV2
             this.Data = data;
             this.Espaco = espaco;
         }
+
+        public override String ToString() {
+            return "Espaço agendado: " + this.Espaco.ToString() +" "+ "Data escolhida: "+this.Data.ToString();
+        }
     }
 }

@@ -1,7 +1,11 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using NoivaeCiaV2;
 
-Console.WriteLine("Hello, World!");
- Empresa empresa = new Empresa();
+Empresa empresa = new Empresa();
+Console.WriteLine("Bem-vindo ao NoivaeCia!!");
 
-empresa.RealizarAgendamento(300);
+Console.WriteLine("Para agendar sua cerimônia, digite a quantidade de pessoas que irão comparecer: ");
+
+Console.WriteLine(empresa.RealizarAgendamento(int.Parse(Console.ReadLine())));
+
+

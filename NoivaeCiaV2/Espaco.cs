@@ -18,5 +18,10 @@ namespace NoivaeCiaV2
             this.Capacidade = Capacidade;
             this.Agendamentos = new List<Agendamento>();
         }
+
+        public override String ToString()
+        {
+            return Id.ToString();
+        }
     }
 }

@@ -31,7 +31,7 @@ namespace NoivaeCiaV2
             Espacos[7] = EspacoH;  
         }
 
-       public void RealizarAgendamento(int qtdPessoas)
+       public string RealizarAgendamento(int qtdPessoas)
         {
             Espaco EspacoAgendado = EncontrarEspacoPorTamanho(TamanhoEspaco(qtdPessoas));
             DateTime DataEncontrada = EncontrarData(EspacoAgendado);
@@ -39,9 +39,11 @@ namespace NoivaeCiaV2
             Agendamento AgendamentoAtual = new Agendamento(DataEncontrada, EspacoAgendado);
 
             EspacoAgendado.Agendamentos.Add(AgendamentoAtual);
-        }
 
-       public int TamanhoEspaco(int qtdPessoas)
+            return AgendamentoAtual.ToString();
+        }
+      
+        public int TamanhoEspaco(int qtdPessoas)
 
         {
             int numeroProximoMaior = int.MaxValue;
@@ -124,6 +126,7 @@ namespace NoivaeCiaV2
             }
             return data.Hoje;
         }
+
     }
 
 
